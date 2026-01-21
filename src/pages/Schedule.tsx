@@ -4,67 +4,57 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useData } from "@/context/DataContext";
 import { Card, CardContent } from "@/components/ui/card";
 import FixturesView from "@/components/schedule/FixturesView";
+import MatchTimeView from "@/components/schedule/MatchTimeView";
 
 // Extracted matches from user provided images
 const upcomingMatches = [
-  // Pool A Matches
-  { id: 1, pool: "A", team1: "TNPESU Chennai", team2: "Hindustan University", date: "Jan 10, 2026", venue: "Ground A" },
-  { id: 2, pool: "A", team1: "Manipal University", team2: "KL Deemed Guntur", date: "Jan 10, 2026", venue: "Ground B" },
-  { id: 3, pool: "A", team1: "Kuvempu University", team2: "Acharya Nagarjuna Guntur", date: "Jan 10, 2026", venue: "Ground C" },
-  { id: 4, pool: "B", team1: "Rajiv Gandhi Nuzvid", team2: "SDM Dharwad", date: "Jan 10, 2026", venue: "Ground D" },
-  { id: 5, pool: "B", team1: "Mother Therasa University", team2: "Thiruvallur University", date: "Jan 11, 2026", venue: "Ground A" },
-  { id: 6, pool: "B", team1: "Tamilnadu Ambedkar Law", team2: "Saveetha University", date: "Jan 11, 2026", venue: "Ground B" },
-  { id: 7, pool: "C", team1: "Madurai Kamaraj", team2: "Karnataka State Akkamahadevi Women", date: "Jan 11, 2026", venue: "Ground C" },
-  { id: 8, pool: "C", team1: "Kannur University", team2: "Jeppiar University", date: "Jan 11, 2026", venue: "Ground D" },
-  { id: 9, pool: "C", team1: "Mangalore University", team2: "Pondicherry University", date: "Jan 12, 2026", venue: "Ground A" },
-  { id: 10, pool: "D", team1: "University of Kerala", team2: "VTU Belagavi", date: "Jan 12, 2026", venue: "Ground B" },
-  { id: 11, pool: "D", team1: "Bharathiar University", team2: "Krishna University", date: "Jan 12, 2026", venue: "Ground C" },
-
-  // Round 2 / Seeding Matches
-  { id: 12, pool: "A", team1: "Bangalore City University", team2: "JNTU Kakinada", date: "Jan 13, 2026", venue: "Ground D" },
-  { id: 13, pool: "A", team1: "Dr. Ambedkar Srikakulam", team2: "Winner Match 1", date: "Jan 13, 2026", venue: "Ground A" },
-  { id: 14, pool: "A", team1: "Winner Match 3", team2: "Sri Venkateshwara Tirupathi", date: "Jan 13, 2026", venue: "Ground B" },
-  { id: 15, pool: "A", team1: "Rajiv Gandhi Bangalore", team2: "SRM IST Kattankulathur", date: "Jan 13, 2026", venue: "Ground C" },
-  { id: 16, pool: "B", team1: "MGR University Chennai", team2: "KLE Tech Hubbali", date: "Jan 14, 2026", venue: "Ground D" },
-  { id: 17, pool: "B", team1: "Winner Match 4", team2: "Winner Match 5", date: "Jan 14, 2026", venue: "Ground A" },
-  { id: 18, pool: "B", team1: "Winner Match 6", team2: "Avinashilingam University", date: "Jan 14, 2026", venue: "Ground B" },
-  { id: 19, pool: "B", team1: "IIPE Vizagapattinam", team2: "Anna University", date: "Jan 14, 2026", venue: "Ground C" },
-  { id: 20, pool: "C", team1: "University of Calicut", team2: "Kakatiya Warangal", date: "Jan 15, 2026", venue: "Ground D" },
-  { id: 21, pool: "C", team1: "Annamalai University", team2: "Winner Match 7", date: "Jan 15, 2026", venue: "Ground A" },
-  { id: 22, pool: "C", team1: "Winner Match 8", team2: "Winner Match 9", date: "Jan 15, 2026", venue: "Ground B" },
-  { id: 23, pool: "C", team1: "Osmania University", team2: "Krishnadevaraya University Ananthapur", date: "Jan 15, 2026", venue: "Ground C" },
-  { id: 24, pool: "D", team1: "Palamuru University", team2: "MG University Kottayam", date: "Jan 16, 2026", venue: "Ground D" },
-  { id: 25, pool: "D", team1: "PES University", team2: "Winner Match 10", date: "Jan 16, 2026", venue: "Ground A" },
-  { id: 26, pool: "D", team1: "Winner Match 11", team2: "Alagappa University", date: "Jan 16, 2026", venue: "Ground B" },
-  { id: 27, pool: "D", team1: "Adikavi Nannaya University", team2: "Andhra University", date: "Jan 16, 2026", venue: "Ground C" },
-
-  // Round 3 / Pre-Quarters
-  { id: 28, pool: "A", team1: "Winner Match 12", team2: "Winner Match 13", date: "Jan 17, 2026", venue: "Ground D" },
-  { id: 29, pool: "A", team1: "Winner Match 2", team2: "Winner Match 14", date: "Jan 17, 2026", venue: "Ground A" },
-  { id: 30, pool: "B", team1: "Winner Match 16", team2: "Winner Match 17", date: "Jan 17, 2026", venue: "Ground B" },
-  { id: 31, pool: "B", team1: "Winner Match 18", team2: "Winner Match 19", date: "Jan 17, 2026", venue: "Ground C" },
-  { id: 32, pool: "C", team1: "Winner Match 20", team2: "Winner Match 21", date: "Jan 18, 2026", venue: "Ground D" },
-  { id: 33, pool: "C", team1: "Winner Match 22", team2: "Osmania University", date: "Jan 18, 2026", venue: "Ground A" },
-  { id: 34, pool: "D", team1: "Winner Match 24", team2: "Winner Match 25", date: "Jan 18, 2026", venue: "Ground B" },
-  { id: 35, pool: "D", team1: "Winner Match 26", team2: "Winner Match 27", date: "Jan 18, 2026", venue: "Ground C" },
-
-  // Quarters / Pool Semis
-  { id: 36, pool: "A", team1: "Winner Match 29", team2: "Winner Match 15", date: "Jan 19, 2026", venue: "Ground D" },
-  { id: 37, pool: "B", team1: "Winner Match 30", team2: "Winner Match 31", date: "Jan 19, 2026", venue: "Ground A" },
-  { id: 38, pool: "C", team1: "Winner Match 32", team2: "Winner Match 33", date: "Jan 19, 2026", venue: "Ground B" },
-  { id: 39, pool: "D", team1: "Winner Match 34", team2: "Winner Match 35", date: "Jan 19, 2026", venue: "Ground C" },
-
-  // Pool Finals
-  { id: 40, pool: "A", team1: "Winner Match 28", team2: "Winner Match 36", date: "Jan 20, 2026", venue: "Ground Main" },
-  { id: 41, pool: "B", team1: "Winner Match 37", team2: "University of Mysore", date: "Jan 20, 2026", venue: "Ground Main" },
-  { id: 42, pool: "C", team1: "Winner Match 38", team2: "Winner Match 23", date: "Jan 21, 2026", venue: "Ground Main" },
-  { id: 43, pool: "D", team1: "Winner Match 39", team2: "University of Madras", date: "Jan 21, 2026", venue: "Ground Main" },
-
-  // Semi Finals & Final
-  { id: 44, pool: "SF1", team1: "Winner Pool A", team2: "Winner Pool B", date: "Jan 22, 2026", venue: "Ground Main" },
-  { id: 45, pool: "SF2", team1: "Winner Pool C", team2: "Winner Pool D", date: "Jan 22, 2026", venue: "Ground Main" },
-  { id: 46, pool: "FINAL", team1: "Winner SF1", team2: "Winner SF2", date: "Jan 23, 2026", venue: "Ground Main" },
-  { id: 47, pool: "3rd Place", team1: "Loser SF1", team2: "Loser SF2", date: "Jan 23, 2026", venue: "Ground Main" },
+  { id: 1, team1: "TNPESU CHENNAI", team2: "HINDUSTAN UNIVERSITY", date: "Jan 10, 2026", venue: "Ground A" },
+  { id: 2, team1: "MANIPAL UNIVERSITY", team2: "KL DEEMED GUNTUR", date: "Jan 10, 2026", venue: "Ground B" },
+  { id: 3, team1: "KUVEMBU UNIVERSITY", team2: "ACHARYA NAGARJUNA GUNTUR", date: "Jan 10, 2026", venue: "Ground C" },
+  { id: 4, team1: "RAJIV GANDHI NUZVID", team2: "SDM DHARWAD", date: "Jan 10, 2026", venue: "Ground D" },
+  { id: 5, team1: "MOTHER THERASA UNIVERSITY", team2: "THIRUVALLUR UNIVERSITY", date: "Jan 11, 2026", venue: "Ground A" },
+  { id: 6, team1: "TAMIL NADU AMBEDKAR LAW", team2: "SAVEETHA UNIVERSITY", date: "Jan 11, 2026", venue: "Ground B" },
+  { id: 7, team1: "MADURAI KAMARAJ", team2: "KARNATAKA STATE AKKAMAHADEVI", date: "Jan 11, 2026", venue: "Ground C" },
+  { id: 8, team1: "KANNUR UNIVERSITY", team2: "JEPPIAR UNIVERSITY", date: "Jan 11, 2026", venue: "Ground D" },
+  { id: 9, team1: "MANGALORE UNIVERSITY", team2: "PONDICHERRY UNIVERSITY", date: "Jan 12, 2026", venue: "Ground A" },
+  { id: 10, team1: "UNIVERSITY OF KERALA", team2: "VTU BELAGAVI", date: "Jan 12, 2026", venue: "Ground B" },
+  { id: 11, team1: "BHARATHIAR UNIVERSITY", team2: "KRISHNA UNIVERSITY", date: "Jan 12, 2026", venue: "Ground C" },
+  { id: 12, team1: "JNTU KAKINADA", team2: "DR. AMBEDKAR SRIKAKULAM", date: "Jan 13, 2026", venue: "Ground D" },
+  { id: 13, team1: "Winner of Match 1", team2: "Winner of Match 2", date: "Jan 13, 2026", venue: "Ground A" },
+  { id: 14, team1: "Winner of Match 3", team2: "SRI VENKATESHWARA TIRUPATHI", date: "Jan 13, 2026", venue: "Ground B" },
+  { id: 15, team1: "RAJIV GANDHI BANGALORE", team2: "SRM IST KATTANKULATHUR", date: "Jan 13, 2026", venue: "Ground C" },
+  { id: 16, team1: "MGR UNIVERSITY CHENNAI", team2: "KLE TECH HUBBALI", date: "Jan 14, 2026", venue: "Ground D" },
+  { id: 17, team1: "Winner of Match 4", team2: "Winner of Match 5", date: "Jan 14, 2026", venue: "Ground A" },
+  { id: 18, team1: "Winner of Match 6", team2: "AVINASHILINGAM UNIVERSITY", date: "Jan 14, 2026", venue: "Ground B" },
+  { id: 19, team1: "IIPE VIZAGAPATTINAM", team2: "ANNA UNIVERSITY", date: "Jan 14, 2026", venue: "Ground C" },
+  { id: 20, team1: "KAKTIYA WARANGAL", team2: "ANNAMALAI UNIVERSITY", date: "Jan 15, 2026", venue: "Ground D" },
+  { id: 21, team1: "Winner of Match 7", team2: "Winner of Match 8", date: "Jan 15, 2026", venue: "Ground A" },
+  { id: 22, team1: "Winner of Match 9", team2: "OSMANIA UNIVERSITY", date: "Jan 15, 2026", venue: "Ground B" },
+  { id: 23, team1: "KRISHNADEVARAYA ANANTHAPUR", team2: "BHARATHITHASAN UNIVERSITY", date: "Jan 15, 2026", venue: "Ground C" },
+  { id: 24, team1: "PALAMURU UNIVERSITY", team2: "MG UNIVERSITY KOTTAYAM", date: "Jan 16, 2026", venue: "Ground D" },
+  { id: 25, team1: "PES UNIVERSITY", team2: "Winner of Match 10", date: "Jan 16, 2026", venue: "Ground A" },
+  { id: 26, team1: "Winner of Match 11", team2: "ALAGAPPA UNIVERSITY", date: "Jan 16, 2026", venue: "Ground B" },
+  { id: 27, team1: "ADIKAVI NANNAYA UNIVERSITY", team2: "ANDHRA UNIVERSITY", date: "Jan 16, 2026", venue: "Ground C" },
+  { id: 28, team1: "Winner of Match 12", team2: "Winner of Match 13", date: "Jan 17, 2026", venue: "Ground D" },
+  { id: 29, team1: "Winner of Match 14", team2: "Winner of Match 15", date: "Jan 17, 2026", venue: "Ground A" },
+  { id: 30, team1: "Winner of Match 16", team2: "Winner of Match 17", date: "Jan 17, 2026", venue: "Ground B" },
+  { id: 31, team1: "Winner of Match 18", team2: "Winner of Match 19", date: "Jan 17, 2026", venue: "Ground C" },
+  { id: 32, team1: "Winner of Match 20", team2: "Winner of Match 21", date: "Jan 18, 2026", venue: "Ground D" },
+  { id: 33, team1: "Winner of Match 22", team2: "Winner of Match 23", date: "Jan 18, 2026", venue: "Ground A" },
+  { id: 34, team1: "Winner of Match 24", team2: "Winner of Match 25", date: "Jan 18, 2026", venue: "Ground B" },
+  { id: 35, team1: "Winner of Match 26", team2: "Winner of Match 27", date: "Jan 18, 2026", venue: "Ground C" },
+  { id: 36, team1: "Winner of Match 28", team2: "Winner of Match 29", date: "Jan 19, 2026", venue: "Ground D" },
+  { id: 37, team1: "Winner of Match 30", team2: "Winner of Match 31", date: "Jan 19, 2026", venue: "Ground A" },
+  { id: 38, team1: "Winner of Match 32", team2: "Winner of Match 33", date: "Jan 19, 2026", venue: "Ground B" },
+  { id: 39, team1: "Winner of Match 34", team2: "Winner of Match 35", date: "Jan 19, 2026", venue: "Ground C" },
+  { id: 40, team1: "BANGALORE CITY UNIVERSITY", team2: "Winner of Match 36", date: "Jan 20, 2026", venue: "Ground Main" },
+  { id: 41, team1: "Winner of Match 37", team2: "UNIVERSITY OF MYSORE", date: "Jan 20, 2026", venue: "Ground Main" },
+  { id: 42, team1: "UNIVERSITY OF CALICUT", team2: "Winner of Match 38", date: "Jan 21, 2026", venue: "Ground Main" },
+  { id: 43, team1: "Winner of Match 39", team2: "UNIVERSITY OF MADRAS", date: "Jan 21, 2026", venue: "Ground Main" },
+  { id: "44 (SF 1)", team1: "Winner of Pool A", team2: "Winner of Pool B", date: "Jan 22, 2026", venue: "Ground Main" },
+  { id: "45 (SF 2)", team1: "Winner of Pool C", team2: "Winner of Pool D", date: "Jan 22, 2026", venue: "Ground Main" },
+  { id: "46 (FINAL)", team1: "Winner of SF 1", team2: "Winner of SF 2", date: "Jan 23, 2026", venue: "Ground Main" },
+  { id: 47, team1: "Loser of SF 1", team2: "Loser of SF 2 (3rd Place)", date: "Jan 23, 2026", venue: "Ground Main" },
 ];
 
 const Schedule = () => {
@@ -84,7 +74,7 @@ const Schedule = () => {
         <Tabs defaultValue="upcoming" className="w-full">
           <TabsList className="w-full grid grid-cols-3 mb-6 h-auto p-1 bg-secondary/5 border border-border/40 backdrop-blur-sm rounded-xl">
             <TabsTrigger value="upcoming" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground py-2.5 rounded-lg font-semibold transition-all">Upcoming</TabsTrigger>
-            <TabsTrigger value="results" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground py-2.5 rounded-lg font-semibold transition-all">Results</TabsTrigger>
+            <TabsTrigger value="match-time" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground py-2.5 rounded-lg font-semibold transition-all">Match Time</TabsTrigger>
             <TabsTrigger value="pools" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground py-2.5 rounded-lg font-semibold transition-all">Pools</TabsTrigger>
           </TabsList>
 
@@ -124,21 +114,8 @@ const Schedule = () => {
             ))}
           </TabsContent>
 
-          <TabsContent value="results" className="space-y-3">
-            {completedMatches.length > 0 ? (
-              completedMatches.map((match) => {
-                const team1 = getTeam(match.teamA);
-                const team2 = getTeam(match.teamB);
-                const displayMatch = {
-                  ...match,
-                  team1: team1?.name || "Unknown Team",
-                  team2: team2?.name || "Unknown Team",
-                };
-                return <MatchCard key={match.id} match={displayMatch} />;
-              })
-            ) : (
-              <p className="text-center text-muted-foreground py-8">No matches have been completed yet.</p>
-            )}
+          <TabsContent value="match-time" className="space-y-3">
+            <MatchTimeView />
           </TabsContent>
 
           <TabsContent value="pools">
