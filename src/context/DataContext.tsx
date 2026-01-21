@@ -109,7 +109,12 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
 
     const [quickLinks, setQuickLinks] = useState(() => {
         const saved = localStorage.getItem('quickLinks');
-        return saved ? JSON.parse(saved) : INITIAL_QUICK_LINKS;
+        let links = saved ? JSON.parse(saved) : INITIAL_QUICK_LINKS;
+        // Migration: Ensure 'Stay' is updated to 'Accommodation'
+        if (Array.isArray(links)) {
+            links = links.map((link: any) => link.id === '3' && link.label === 'Stay' ? { ...link, label: 'Accommodation' } : link);
+        }
+        return links;
     });
 
     // Persist to localStorage whenever state changes
