@@ -117,22 +117,49 @@ export const VENUES = [
 
 export const ACCOMMODATION = [
     {
+        id: 'a5',
+        name: 'Tanjore House',
+        type: 'Managers Accommodation',
+        address: 'VIP Guest Complex, KSRCT',
+        distance: "Adjacent to Principal's Bungalow",
+        facilities: ['AC Rooms', 'TV', 'attached Bath', 'Wi-Fi'],
+        contact: 'Reception: 9876543214'
+    },
+    {
         id: 'a1',
-        name: 'KSRCT Girls Hostel',
-        type: 'Hostel',
-        address: 'KSR Educational Institutions Campus',
-        distance: '500m from Ground',
-        facilities: ['Wi-Fi', 'Hot Water', 'Mess Hall'],
+        name: 'Trichy House',
+        type: 'Players Accommodation',
+        address: 'K.S. Rangasamy College of Technology Campus',
+        distance: 'Near Synthetic Track',
+        facilities: ["Wi-Fi", "Attached Bathroom", "Hot Water", "Common Room"],
         contact: 'Warden: 9876543210'
     },
     {
         id: 'a2',
-        name: 'Hotel Green Ridge',
-        type: 'Hotel',
-        address: 'Salem Main Road, Tiruchengode',
-        distance: '5km from Ground',
-        facilities: ['AC Rooms', 'Restaurant', 'Parking'],
-        contact: 'Reception: 04288-223344'
+        name: 'Madurai House',
+        type: 'Players Accommodation',
+        address: 'K.S. Rangasamy College of Technology Campus',
+        distance: 'Near Main Pharmacy Block',
+        facilities: ["Wi-Fi", "Attached Bathroom", "Hot Water", "Common Room"],
+        contact: 'Warden: 9876543211'
+    },
+    {
+        id: 'a3',
+        name: 'Nilgiri House',
+        type: 'Players Accommodation',
+        address: 'K.S. Rangasamy College of Technology Campus',
+        distance: 'Opposite to MBA Block',
+        facilities: ["Wi-Fi", "Attached Bathroom", "Hot Water", "Common Room"],
+        contact: 'Warden: 9876543212'
+    },
+    {
+        id: 'a4',
+        name: 'Teachers House',
+        type: 'Players Accommodation',
+        address: 'Staff Quarters, KSRCT Campus',
+        distance: 'Behind Main Admin Block',
+        facilities: ["Wi-Fi", "Attached Bathroom", "Hot Water", "Common Room"],
+        contact: 'In-charge: 9876543213'
     }
 ];
 

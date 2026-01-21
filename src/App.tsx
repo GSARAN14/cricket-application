@@ -19,6 +19,7 @@ import Gallery from "./pages/Gallery";
 import Feedback from "./pages/Feedback";
 import Notifications from "./pages/Notifications";
 import About from "./pages/About";
+import Committee from "./pages/Committee";
 import More from "./pages/More";
 import NotFound from "./pages/NotFound";
 import { DataProvider } from "./context/DataContext";
@@ -59,6 +60,7 @@ const App = () => (
             <Route path="/feedback" element={<Feedback />} />
             <Route path="/notifications" element={<Notifications />} />
             <Route path="/about" element={<About />} />
+            <Route path="/committee" element={<Committee />} />
             <Route path="/more" element={<More />} />
 
             {/* Admin Routes */}
