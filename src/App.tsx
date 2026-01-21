@@ -8,6 +8,7 @@ import Schedule from "./pages/Schedule";
 import Venue from "./pages/Venue";
 import Teams from "./pages/Teams";
 import Results from "./pages/Results";
+import Discover from "./pages/Discover";
 import Accommodation from "./pages/Accommodation";
 import Food from "./pages/Food";
 import Transport from "./pages/Transport";
@@ -47,6 +48,7 @@ const App = () => (
             <Route path="/venue" element={<Venue />} />
             <Route path="/teams" element={<Teams />} />
             <Route path="/results" element={<Results />} />
+            <Route path="/discover" element={<Discover />} />
             <Route path="/accommodation" element={<Accommodation />} />
             <Route path="/food" element={<Food />} />
             <Route path="/transport" element={<Transport />} />

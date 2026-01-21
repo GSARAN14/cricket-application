@@ -52,8 +52,10 @@ const INITIAL_QUICK_LINKS = [
     { id: '5', label: "Transport", path: "/transport", color: "bg-indigo-100 text-indigo-600", iconName: "Bus" },
     { id: '6', label: "Contacts", path: "/contacts", color: "bg-teal-100 text-teal-600", iconName: "Phone" },
     { id: '7', label: "Emergency", path: "/emergency", color: "bg-red-100 text-red-600", iconName: "AlertTriangle" },
-    { id: '8', label: "Results", path: "/results", color: "bg-amber-100 text-amber-600", iconName: "Trophy" },
+    { id: '8', label: "Discover", path: "/discover", color: "bg-amber-100 text-amber-600", iconName: "Trophy" },
 ];
+
+const QUICK_LINKS_VERSION = '2.0'; // Increment this to force cache refresh
 
 export function DataProvider({ children }: { children: React.ReactNode }) {
     // Initialize state from localStorage or mockData
@@ -109,6 +111,15 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
 
     const [quickLinks, setQuickLinks] = useState(() => {
         const saved = localStorage.getItem('quickLinks');
+        const savedVersion = localStorage.getItem('quickLinksVersion');
+
+        // If version changed or no version saved, use fresh data
+        if (savedVersion !== QUICK_LINKS_VERSION) {
+            localStorage.setItem('quickLinksVersion', QUICK_LINKS_VERSION);
+            localStorage.setItem('quickLinks', JSON.stringify(INITIAL_QUICK_LINKS));
+            return INITIAL_QUICK_LINKS;
+        }
+
         return saved ? JSON.parse(saved) : INITIAL_QUICK_LINKS;
     });
 
