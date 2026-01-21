@@ -1,0 +1,59 @@
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Info, Calendar, MapPin, Users } from "lucide-react";
+
+export default function AboutSection() {
+    return (
+        <section className="px-4 py-6 max-w-7xl mx-auto space-y-6">
+            <div className="flex items-center gap-2 mb-4">
+                <Info className="text-primary h-6 w-6" />
+                <h2 className="text-2xl font-bold font-serif text-primary">About the Tournament</h2>
+            </div>
+
+            <Card className="bg-white/50 backdrop-blur-sm border-blue-100 shadow-sm relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-blue-100 rounded-full blur-3xl -translate-y-16 translate-x-16 opacity-50 pointer-events-none"></div>
+                <CardHeader>
+                    <CardTitle className="text-xl text-blue-900">South Zone Inter-University Women's Cricket Tournament 2026</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4 text-slate-700 leading-relaxed relative z-10">
+                    <p>
+                        We are proud to host the prestigious South Zone Inter-University Women's Cricket Tournament at
+                        <strong className="text-blue-700"> K.S. Rangasamy College of Technology (KSRCT)</strong>.
+                        This tournament brings together the finest women cricketers from universities across South India to compete for glory and showcase their talent on a grand stage.
+                    </p>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+                        <div className="flex items-center gap-3 bg-white p-3 rounded-lg shadow-sm border border-slate-100">
+                            <div className="bg-blue-50 p-2 rounded-full text-blue-600"><Calendar className="h-5 w-5" /></div>
+                            <div>
+                                <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold">Dates</p>
+                                <p className="font-medium">Jan 22 - Jan 28, 2026</p>
+                            </div>
+                        </div>
+                        <div className="flex items-center gap-3 bg-white p-3 rounded-lg shadow-sm border border-slate-100">
+                            <div className="bg-emerald-50 p-2 rounded-full text-emerald-600"><MapPin className="h-5 w-5" /></div>
+                            <div>
+                                <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold">Host</p>
+                                <p className="font-medium">KSRCT, Tiruchengode</p>
+                            </div>
+                        </div>
+                        <div className="flex items-center gap-3 bg-white p-3 rounded-lg shadow-sm border border-slate-100">
+                            <div className="bg-purple-50 p-2 rounded-full text-purple-600"><Users className="h-5 w-5" /></div>
+                            <div>
+                                <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold">Teams</p>
+                                <p className="font-medium">50+ Universities</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="pt-4 border-t border-slate-200 mt-4">
+                        <h4 className="font-semibold text-sm text-slate-900 mb-2">Organizing Committee (Anna University)</h4>
+                        <ul className="text-sm space-y-1 text-slate-600">
+                            <li>• Dr. M. Venkatesan - Sports Secretary</li>
+                            <li>• Mr. K. Palanisamy - Event Coordinator</li>
+                        </ul>
+                    </div>
+                </CardContent>
+            </Card>
+        </section>
+    );
+}
