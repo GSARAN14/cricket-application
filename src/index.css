@@ -21,14 +21,14 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
 
-    /* PRIMARY: CSK Yellow (The main brand color) #F9CD05 -> HSL 49 97% 50% */
-    --primary: 49 97% 50%;
-    /* Primary Text: Deep Blue for readability on yellow */
-    --primary-foreground: 212 100% 31%;
+    /* PRIMARY: Rich Royal Blue */
+    --primary: 212 100% 45%;
+    /* Primary Text: White */
+    --primary-foreground: 0 0% 100%;
 
-    /* SECONDARY: CSK Blue (The dominant accent) #004BA0 -> HSL 212 100% 31% */
-    --secondary: 212 100% 31%;
-    --secondary-foreground: 0 0% 100%;
+    /* SECONDARY: CSK Yellow (for accents/highlights) */
+    --secondary: 49 97% 50%;
+    --secondary-foreground: 212 100% 31%;
 
     /* ACCENT: Roaring Orange (For highlights) #EA3C12 -> HSL 12 86% 49% */
     --accent: 12 86% 49%;

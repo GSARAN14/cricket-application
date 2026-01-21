@@ -26,7 +26,7 @@ export default function AboutSection() {
                             <div className="bg-blue-50 p-2 rounded-full text-blue-600"><Calendar className="h-5 w-5" /></div>
                             <div>
                                 <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold">Dates</p>
-                                <p className="font-medium">Jan 22 - Jan 28, 2026</p>
+                                <p className="font-medium text-blue-900">Jan 26 - Feb 02, 2026</p>
                             </div>
                         </div>
                         <div className="flex items-center gap-3 bg-white p-3 rounded-lg shadow-sm border border-slate-100">
