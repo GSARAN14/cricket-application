@@ -5,9 +5,9 @@ import { motion } from "framer-motion";
 
 const TournamentQuickLinks = () => {
   const links = [
-    { label: "About Tournament", path: "/about", icon: Info },
-    { label: "Anna University", path: "https://www.annauniv.edu/", icon: Building2 },
-    { label: "KSRCT", path: "http://ksrct.ac.in/", icon: Building2 },
+
+    { label: "Anna University", path: "/anna-university", icon: Building2 },
+    { label: "KSRCT", path: "/ksrct", icon: Building2 },
     { label: "Organizing Committee", path: "/committee", icon: Users },
   ];
 

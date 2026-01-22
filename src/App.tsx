@@ -21,6 +21,8 @@ import Notifications from "./pages/Notifications";
 import About from "./pages/About";
 import Committee from "./pages/Committee";
 import More from "./pages/More";
+import AnnaUniversity from "./pages/AnnaUniversity";
+import KSRCT from "./pages/KSRCT";
 import NotFound from "./pages/NotFound";
 import { DataProvider } from "./context/DataContext";
 import AdminLogin from "@/pages/admin/Login";
@@ -62,6 +64,8 @@ const App = () => (
             <Route path="/about" element={<About />} />
             <Route path="/committee" element={<Committee />} />
             <Route path="/more" element={<More />} />
+            <Route path="/anna-university" element={<AnnaUniversity />} />
+            <Route path="/ksrct" element={<KSRCT />} />
 
             {/* Admin Routes */}
             <Route path="/admin/login" element={<AdminLogin />} />

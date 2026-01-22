@@ -45,13 +45,7 @@ export default function AboutSection() {
                         </div>
                     </div>
 
-                    <div className="pt-4 border-t border-slate-200 mt-4">
-                        <h4 className="font-semibold text-sm text-slate-900 mb-2">Organizing Committee (Anna University)</h4>
-                        <ul className="text-sm space-y-1 text-slate-600">
-                            <li>• Dr. M. Venkatesan - Sports Secretary</li>
-                            <li>• Mr. K. Palanisamy - Event Coordinator</li>
-                        </ul>
-                    </div>
+
                 </CardContent>
             </Card>
         </section>
