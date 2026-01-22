@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
+import MatchDetails from "./pages/MatchDetails";
 import Schedule from "./pages/Schedule";
 import Venue from "./pages/Venue";
 import Teams from "./pages/Teams";
@@ -66,6 +67,7 @@ const App = () => (
             <Route path="/more" element={<More />} />
             <Route path="/anna-university" element={<AnnaUniversity />} />
             <Route path="/ksrct" element={<KSRCT />} />
+            <Route path="/match/:id" element={<MatchDetails />} />
 
             {/* Admin Routes */}
             <Route path="/admin/login" element={<AdminLogin />} />

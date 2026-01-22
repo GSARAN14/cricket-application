@@ -16,7 +16,11 @@ const MatchCell = ({ children, venueId, className }: { children: React.ReactNode
 
     const handleClick = () => {
         if (isClickable) {
-            navigate("/venue", { state: { targetVenueId: venueId } });
+            // Dispatch a custom event to trigger scrolling in the parent component
+            const event = new CustomEvent('scrollToMatch', {
+                detail: { matchId: children }
+            });
+            window.dispatchEvent(event);
         }
     };
 

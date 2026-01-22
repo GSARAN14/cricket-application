@@ -4,52 +4,67 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Utensils, Clock, MapPin, Phone, Leaf, AlertCircle, Navigation } from "lucide-react";
 
 const mealTimings = [
-  { meal: "Breakfast", time: "7:00 AM - 9:00 AM", venue: "Hostel Dining Hall" },
-  { meal: "Lunch", time: "12:30 PM - 2:00 PM", venue: "Ground Canteen" },
-  { meal: "Evening Snacks", time: "4:30 PM - 5:30 PM", venue: "Pavilion Area" },
-  { meal: "Dinner", time: "7:00 PM - 9:00 PM", venue: "Hostel Dining Hall" },
+  { meal: "Refreshment", venue: "Ground", cost: "Free" },
+  { meal: "Breakfast", time: "7:00 AM - 9:00 AM", venue: "Hostel Dining Hall", cost: "₹85" },
+  { meal: "Lunch", time: "12:30 PM - 2:00 PM", venue: "Ground Canteen", cost: "₹130" },
+  { meal: "Dinner", time: "7:00 PM - 9:00 PM", venue: "Hostel Dining Hall", cost: "₹85" },
 ];
 
 const nearbyRestaurants = [
-
   {
-    id: "2",
-    name: "Kongu Restaurant",
-    type: "Veg",
-    cuisine: "Campus Area",
-    distance: "42m away",
-    mapLink: "https://maps.app.goo.gl/5vyYR6YPCvatgiLB9",
+    id: "1",
+    name: "Nutrice KSR",
+    type: "Refreshments",
+    cuisine: "KSR Campus",
+    distance: "Check Map",
+    mapLink: "https://maps.app.goo.gl/4ScT6XyU9fEZGJgK6",
   },
   {
-    id: "4",
-    name: "MK Little Bites",
+    id: "2",
+    name: "MK LITTLE BITES",
     type: "Snacks",
     cuisine: "Tiruchengode",
     distance: "Check Map",
-    mapLink: "https://maps.app.goo.gl/RKb22hGTPZW5nTUv9",
-  },
-  {
-    id: "5",
-    name: "Friends Fast Food",
-    type: "Fast Food",
-    cuisine: "Tiruchengode",
-    distance: "Check Map",
-    mapLink: "https://maps.app.goo.gl/3CWQWVa9vogZ62eeA",
+    mapLink: "https://maps.app.goo.gl/GUPAre6U3rXyakNZ8",
   },
   {
     id: "3",
+    name: "Tarts and Bites",
+    type: "Bakery",
+    cuisine: "Near Venue",
+    distance: "Check Map",
+    mapLink: "https://www.google.com/maps/search/Tarts+Bites+Ksr+Kalvi+Nagar+Tiruchengode",
+  },
+  {
+    id: "4",
+    name: "Sri vinayaga bakes",
+    type: "Bakery",
+    cuisine: "Near Venue",
+    distance: "Check Map",
+    mapLink: "https://www.google.com/maps/search/Sri+Vinayaga+Bakes+Ksr+Kalvi+Nagar+Tiruchengode",
+  },
+  {
+    id: "5",
     name: "Day 2 Day",
     type: "Veg",
     cuisine: "Near Venue",
-    distance: "Nearby",
-    mapLink: "https://maps.app.goo.gl/K3wd9iHTG3W1BWj89",
+    distance: "Check Map",
+    mapLink: "https://www.google.com/maps/search/?api=1&query=Day+2+Day+Restaurant,+Erode+Main+Road,+Ksr+Kalvi+Nagar,+Tiruchengode",
+  },
+  {
+    id: "6",
+    name: "SVM GRAND CAFE",
+    type: "Cafe",
+    cuisine: "Near Venue",
+    distance: "Check Map",
+    mapLink: "https://maps.app.goo.gl/wyq6PdC5jYXuQaZVA",
   },
 ];
 
 const Food = () => {
   return (
     <AppLayout>
-      <div className="p-4 space-y-4">
+      <div className="p-4 space-y-4 pb-20">
         <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">
           <Utensils className="h-6 w-6 text-secondary" />
           Food & Dining
@@ -69,7 +84,8 @@ const Food = () => {
               <ul className="text-sm text-foreground/80 space-y-2 list-disc pl-4">
                 <li>Meals must be pre-booked at least 6 hours in advance.</li>
                 <li>Food tokens are issued 6 hours prior to the scheduled time.</li>
-                <li>The cost of each food item is displayed.</li>
+                <li>Canteen facilities are available at the venue.</li>
+                <li>Food charges per person are fixed.</li>
                 <li>Food charges are applied according to the listed cost.</li>
               </ul>
             </Card>
@@ -80,14 +96,21 @@ const Food = () => {
                   <h3 className="font-bold text-foreground font-serif">{meal.meal}</h3>
                 </div>
                 <div className="space-y-1 text-sm text-muted-foreground">
-                  <div className="flex items-center gap-2">
-                    <Clock className="h-4 w-4 text-primary" />
-                    <span>{meal.time}</span>
-                  </div>
+                  {(meal as any).time && (
+                    <div className="flex items-center gap-2">
+                      <Clock className="h-4 w-4 text-primary" />
+                      <span>{(meal as any).time}</span>
+                    </div>
+                  )}
                   <div className="flex items-center gap-2">
                     <MapPin className="h-4 w-4 text-primary" />
                     <span>{meal.venue}</span>
                   </div>
+                  {(meal as any).cost && (
+                    <div className="flex items-center gap-2 mt-2 pt-2 border-t border-border/40">
+                      <span className="font-semibold text-primary">Cost: {(meal as any).cost}</span>
+                    </div>
+                  )}
                 </div>
               </Card>
             ))}
@@ -95,36 +118,41 @@ const Food = () => {
 
           <TabsContent value="nearby" className="space-y-3">
             {nearbyRestaurants.map((restaurant) => (
-              <Card key={restaurant.id} className="glass-card p-4 hover:border-secondary/40 transition-colors">
-                <div className="flex items-start justify-between mb-2">
-                  <div>
-                    <h3 className="font-bold text-foreground font-serif">{restaurant.name}</h3>
-                    <p className="text-sm text-muted-foreground">{restaurant.cuisine}</p>
+              <a
+                key={restaurant.id}
+                href={restaurant.mapLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block group"
+              >
+                <Card className="glass-card p-4 hover:border-secondary/40 transition-colors group-hover:bg-secondary/5">
+                  <div className="flex items-start justify-between mb-2">
+                    <div>
+                      <h3 className="font-bold text-foreground font-serif group-hover:text-primary transition-colors">{restaurant.name}</h3>
+                      <p className="text-sm text-muted-foreground">{restaurant.cuisine}</p>
+                    </div>
+                    <span className={`text-xs px-2 py-0.5 rounded-full border font-medium flex items-center gap-1 ${restaurant.type === "Veg"
+                      ? "bg-green-500/10 text-green-700 border-green-500/20"
+                      : "bg-red-500/10 text-red-700 border-red-500/20"
+                      }`}>
+                      <Leaf className="h-3 w-3" />
+                      {restaurant.type}
+                    </span>
                   </div>
-                  <span className={`text-xs px-2 py-0.5 rounded-full border font-medium flex items-center gap-1 ${restaurant.type === "Veg"
-                    ? "bg-green-500/10 text-green-700 border-green-500/20"
-                    : "bg-red-500/10 text-red-700 border-red-500/20"
-                    }`}>
-                    <Leaf className="h-3 w-3" />
-                    {restaurant.type}
-                  </span>
-                </div>
-                <div className="flex items-center justify-between text-sm mt-3">
-                  <div className="flex items-center gap-1 text-muted-foreground">
-                    <MapPin className="h-4 w-4 text-secondary" />
-                    <span>{restaurant.distance}</span>
+                  <div className="flex items-center justify-between text-sm mt-3">
+                    <div className="flex items-center gap-1 text-muted-foreground group-hover:text-foreground transition-colors">
+                      <MapPin className="h-4 w-4 text-secondary" />
+                      <span>{restaurant.distance}</span>
+                    </div>
+                    <div
+                      className="flex items-center gap-1 text-primary group-hover:text-primary/80 transition-colors font-medium bg-primary/5 px-3 py-1.5 rounded-md"
+                    >
+                      <Navigation className="h-4 w-4" />
+                      <span>Open Map</span>
+                    </div>
                   </div>
-                  <a
-                    href={(restaurant as any).mapLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1 text-primary hover:text-primary/80 transition-colors font-medium bg-primary/5 px-3 py-1.5 rounded-md"
-                  >
-                    <Navigation className="h-4 w-4" />
-                    <span>Open Map</span>
-                  </a>
-                </div>
-              </Card>
+                </Card>
+              </a>
             ))}
           </TabsContent>
         </Tabs>
