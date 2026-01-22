@@ -23,6 +23,42 @@ const places = [
         description: "Beautiful dam and waterfalls surrounded by lush greenery. A popular picnic spot with scenic views and flowing water.",
         mapLink: "https://www.google.com/maps/search/?api=1&query=F7FW%2B6HC+Oddarpalayam%2C+Tamil+Nadu"
     },
+    {
+        id: 3,
+        name: "VOC Park",
+        location: "VOC Park & Zoo, Erode, Tamil Nadu, India",
+        image: "/voc_park.jpg",
+        timings: "Morning: 9:00 AM – 1:00 PM\nEvening: 3:00 PM – 6:30 PM\n(Closed on Tuesdays)",
+        description: "A popular recreational park and zoo in Erode featuring diverse flora and fauna, perfect for family outings and nature enthusiasts.",
+        mapLink: "https://www.google.com/maps/search/?api=1&query=VOC+Park+Zoo+Erode+Tamil+Nadu"
+    },
+    {
+        id: 4,
+        name: "Vellode Bird Sanctuary",
+        location: "Vadamugam Vellode, Tamil Nadu 638112",
+        image: "/vellode_bird_sanctuary.jpg",
+        timings: "Daily: 9:00 AM – 5:00 PM",
+        description: "A serene bird sanctuary home to diverse avian species, offering peaceful nature walks and excellent bird watching opportunities.",
+        mapLink: "https://www.google.com/maps/search/?api=1&query=Vellode+Bird+Sanctuary+Vadamugam+Tamil+Nadu"
+    },
+    {
+        id: 5,
+        name: "Sathyamangalam Wildlife Sanctuary",
+        location: "Nature preserve in Talamalai R.F., Tamil Nadu",
+        image: "/sathyamangalam_wildlife.jpg",
+        timings: "Daily: 6:00 AM – 6:00 PM",
+        description: "A vast wildlife sanctuary known for its rich biodiversity, home to elephants, tigers, and various wildlife species in their natural habitat.",
+        mapLink: "https://www.google.com/maps/search/?api=1&query=Sathyamangalam+Wildlife+Sanctuary+Tamil+Nadu"
+    },
+    {
+        id: 6,
+        name: "Bhavanisagar Dam",
+        location: "Bhavanisagar, Erode, Tamil Nadu, India",
+        image: "/bhavanisagar_dam.jpg",
+        timings: "Daily: 8:30 AM – 5:30 PM",
+        description: "A major dam across the Bhavani River, offering scenic views and a peaceful environment for visitors and nature lovers.",
+        mapLink: "https://www.google.com/maps/search/?api=1&query=Bhavanisagar+Dam+Erode+Tamil+Nadu"
+    },
 ];
 
 const Discover = () => {
