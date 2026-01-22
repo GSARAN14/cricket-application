@@ -12,7 +12,7 @@ const accommodations = [
     distance: "Adjacent to Principal's Bungalow",
     checkIn: "12:00 PM",
     checkOut: "12:00 PM",
-    facilities: ["AC Rooms", "TV", "Attached Bath", "Private Dining", "Wi-Fi"],
+    facilities: ["Wi-Fi", "Attached Bathroom", "Hot Water", "Common Room"],
     contact: "Reception: +91 98765 43214",
     image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=800",
   },
@@ -69,6 +69,103 @@ const accommodations = [
   },
 ];
 
+const AccommodationCard = ({ acc }: { acc: typeof accommodations[0] }) => {
+  const isManager = acc.type.includes("Managers");
+
+  return (
+    <Card
+      className={`glass-card p-5 group transition-all hover:shadow-lg ${isManager
+        ? "border-amber-500/30 bg-amber-500/5 hover:shadow-amber-500/10"
+        : "border-border/60 hover:shadow-primary/5"
+        }`}
+    >
+      <div className="relative h-48 w-full mb-4 overflow-hidden rounded-xl">
+        <img
+          src={acc.image}
+          alt={acc.name}
+          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+        <div className="absolute bottom-3 left-3 right-3">
+          <h3 className={`font-bold text-lg text-white font-serif shadow-sm`}>
+            {acc.name}
+          </h3>
+          <span className={`text-[10px] px-2 py-0.5 rounded-full font-medium inline-block mt-1 backdrop-blur-sm ${isManager
+            ? "bg-amber-500/90 text-white"
+            : "bg-primary/90 text-white"
+            }`}>
+            {acc.type}
+          </span>
+        </div>
+      </div>
+
+      <div className="space-y-2 mb-4">
+        <div className="flex items-start gap-2 text-sm text-muted-foreground">
+          <MapPin className={`h-4 w-4 mt-0.5 flex-shrink-0 ${isManager ? "text-amber-600" : "text-primary"}`} />
+          <span>{acc.address}</span>
+        </div>
+        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+          <Navigation className={`h-4 w-4 ${isManager ? "text-amber-600" : "text-primary"}`} />
+          <span>{acc.distance}</span>
+        </div>
+        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+          <Clock className={`h-4 w-4 ${isManager ? "text-amber-600" : "text-primary"}`} />
+          <span>24-Hour Availability</span>
+        </div>
+      </div>
+
+      <div className="mb-5">
+        <p className="text-sm font-semibold text-foreground mb-2">Facilities</p>
+        <div className="flex flex-wrap gap-2">
+          {acc.facilities.map((facility) => (
+            <span
+              key={facility}
+              className="text-xs bg-background/50 border border-border/50 text-foreground px-2 py-1 rounded-md"
+            >
+              {facility}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <div className="flex gap-3">
+        <Button variant="outline" className={`flex-1 transition-colors ${isManager
+          ? "hover:bg-amber-500/10 hover:text-amber-700 hover:border-amber-500/30"
+          : "hover:bg-primary/5 hover:text-primary hover:border-primary/30"
+          }`} asChild>
+          <a href={`tel:${acc.contact}`}>
+            <Phone className="h-4 w-4 mr-2" />
+            Call
+          </a>
+        </Button>
+        <Button
+          className={`flex-1 text-white shadow-lg ${isManager
+            ? "bg-amber-600 hover:bg-amber-700 shadow-amber-600/20"
+            : "bg-secondary hover:bg-secondary/90 shadow-secondary/20"
+            }`}
+          asChild={!!acc.coordinates}
+        >
+          {acc.coordinates ? (
+            <a
+              href={`https://www.google.com/maps/search/?api=1&query=${acc.coordinates.lat},${acc.coordinates.lng}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Navigation className="h-4 w-4 mr-2" />
+              Directions
+            </a>
+          ) : (
+            <>
+              <Navigation className="h-4 w-4 mr-2" />
+              Directions
+            </>
+          )}
+        </Button>
+      </div>
+    </Card>
+  );
+};
+
 const Accommodation = () => {
   return (
     <AppLayout>
@@ -78,104 +175,38 @@ const Accommodation = () => {
           Accommodation
         </h1>
 
-        <div className="space-y-4">
-          {accommodations.map((acc) => {
-            const isManager = acc.type.includes("Managers");
+        <div className="text-center p-6 mb-6 rounded-2xl bg-secondary/5 border border-secondary/10">
+          <p className="text-sm text-muted-foreground italic font-medium leading-relaxed">
+            "All accommodation arrangements are systematically organized within the KSRCT campus, ensuring a safe, disciplined, and comfortable stay for all residents."
+          </p>
+        </div>
 
-            return (
-              <Card
-                key={acc.id}
-                className={`glass-card p-5 group transition-all hover:shadow-lg ${isManager
-                  ? "border-amber-500/30 bg-amber-500/5 hover:shadow-amber-500/10"
-                  : "border-border/60 hover:shadow-primary/5"
-                  }`}
-              >
-                <div className="relative h-48 w-full mb-4 overflow-hidden rounded-xl">
-                  <img
-                    src={acc.image}
-                    alt={acc.name}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  <div className="absolute bottom-3 left-3 right-3">
-                    <h3 className={`font-bold text-lg text-white font-serif shadow-sm`}>
-                      {acc.name}
-                    </h3>
-                    <span className={`text-[10px] px-2 py-0.5 rounded-full font-medium inline-block mt-1 backdrop-blur-sm ${isManager
-                      ? "bg-amber-500/90 text-white"
-                      : "bg-primary/90 text-white"
-                      }`}>
-                      {acc.type}
-                    </span>
-                  </div>
-                </div>
+        <div className="space-y-8">
+          <div>
+            <h2 className="text-xl font-bold font-serif text-foreground mb-4 pl-1 border-l-4 border-amber-500">
+              Managers Accommodation
+            </h2>
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {accommodations
+                .filter(acc => acc.type.includes("Managers"))
+                .map((acc) => (
+                  <AccommodationCard key={acc.id} acc={acc} />
+                ))}
+            </div>
+          </div>
 
-                <div className="space-y-2 mb-4">
-                  <div className="flex items-start gap-2 text-sm text-muted-foreground">
-                    <MapPin className={`h-4 w-4 mt-0.5 flex-shrink-0 ${isManager ? "text-amber-600" : "text-primary"}`} />
-                    <span>{acc.address}</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <Navigation className={`h-4 w-4 ${isManager ? "text-amber-600" : "text-primary"}`} />
-                    <span>{acc.distance}</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <Clock className={`h-4 w-4 ${isManager ? "text-amber-600" : "text-primary"}`} />
-                    <span>Check-in: {acc.checkIn} | Check-out: {acc.checkOut}</span>
-                  </div>
-                </div>
-
-                <div className="mb-5">
-                  <p className="text-sm font-semibold text-foreground mb-2">Facilities</p>
-                  <div className="flex flex-wrap gap-2">
-                    {acc.facilities.map((facility) => (
-                      <span
-                        key={facility}
-                        className="text-xs bg-background/50 border border-border/50 text-foreground px-2 py-1 rounded-md"
-                      >
-                        {facility}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="flex gap-3">
-                  <Button variant="outline" className={`flex-1 transition-colors ${isManager
-                    ? "hover:bg-amber-500/10 hover:text-amber-700 hover:border-amber-500/30"
-                    : "hover:bg-primary/5 hover:text-primary hover:border-primary/30"
-                    }`} asChild>
-                    <a href={`tel:${acc.contact}`}>
-                      <Phone className="h-4 w-4 mr-2" />
-                      Call
-                    </a>
-                  </Button>
-                  <Button
-                    className={`flex-1 text-white shadow-lg ${isManager
-                      ? "bg-amber-600 hover:bg-amber-700 shadow-amber-600/20"
-                      : "bg-secondary hover:bg-secondary/90 shadow-secondary/20"
-                      }`}
-                    asChild={!!acc.coordinates}
-                  >
-                    {acc.coordinates ? (
-                      <a
-                        href={`https://www.google.com/maps/search/?api=1&query=${acc.coordinates.lat},${acc.coordinates.lng}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Navigation className="h-4 w-4 mr-2" />
-                        Directions
-                      </a>
-                    ) : (
-                      <>
-                        <Navigation className="h-4 w-4 mr-2" />
-                        Directions
-                      </>
-                    )}
-                  </Button>
-                </div>
-              </Card>
-            );
-          })}
+          <div>
+            <h2 className="text-xl font-bold font-serif text-foreground mb-4 pl-1 border-l-4 border-primary">
+              Participants Accommodation
+            </h2>
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {accommodations
+                .filter(acc => !acc.type.includes("Managers"))
+                .map((acc) => (
+                  <AccommodationCard key={acc.id} acc={acc} />
+                ))}
+            </div>
+          </div>
         </div>
 
         <div className="mt-8 space-y-6">
@@ -185,15 +216,12 @@ const Accommodation = () => {
               Accommodation Safety Instructions
             </h2>
             <ul className="space-y-3 text-sm text-foreground/80 list-disc pl-5">
-              <li>All residents must carry and display valid ID cards at all times inside the accommodation premises.</li>
-              <li>Smoking, alcohol, drugs, and any prohibited substances are strictly not allowed.</li>
-              <li>Maintain discipline, cleanliness, and silence, especially during night hours.</li>
-              <li>Visitors are not permitted inside rooms without prior authorization.</li>
-              <li>Any damage to accommodation property will be treated as a serious offense and the cost will be recovered from the individual.</li>
-              <li>Follow all fire safety rules and emergency evacuation procedures as instructed.</li>
-              <li>In case of emergencies, residents must immediately inform the accommodation authorities.</li>
-              <li>The management is not responsible for loss of personal belongings; residents are advised to take necessary precautions.</li>
-              <li>Failure to comply with the above instructions may lead to strict disciplinary action or cancellation of accommodation.</li>
+              <li>A peaceful and clean environment is to be maintained, especially during rest hours.</li>
+              <li>Visitor entry is permitted only with prior authorization.</li>
+              <li>Fire safety and emergency procedures are to be followed as instructed.</li>
+              <li>Accommodation is provided to teams one day prior to the commencement of their respective matches.</li>
+              <li>Teams are expected to vacate the accommodation within 24 hours after the completion of their competition.</li>
+              <li>Non-compliance may result in appropriate administrative action, if required.</li>
             </ul>
           </Card>
 
@@ -224,11 +252,7 @@ const Accommodation = () => {
             </div>
           </Card>
 
-          <div className="text-center p-6 rounded-2xl bg-secondary/5 border border-secondary/10">
-            <p className="text-sm text-muted-foreground italic font-medium leading-relaxed">
-              "All accommodation arrangements are systematically organized within the KSRCT campus, ensuring a safe, disciplined, and comfortable stay for all residents."
-            </p>
-          </div>
+
         </div>
       </div>
     </AppLayout >

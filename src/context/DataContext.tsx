@@ -47,7 +47,7 @@ const DataContext = createContext<DataContextType | undefined>(undefined);
 const INITIAL_QUICK_LINKS = [
     { id: '1', label: "Schedule", path: "/schedule", color: "bg-blue-100 text-blue-600", iconName: "Calendar" },
     { id: '2', label: "Venue", path: "/venue", color: "bg-emerald-100 text-emerald-600", iconName: "MapPin" },
-    { id: '3', label: "Stay", path: "/accommodation", color: "bg-purple-100 text-purple-600", iconName: "Building" },
+    { id: '3', label: "Accommodation", path: "/accommodation", color: "bg-purple-100 text-purple-600", iconName: "Building" },
     { id: '4', label: "Food", path: "/food", color: "bg-orange-100 text-orange-600", iconName: "Utensils" },
     { id: '5', label: "Transport", path: "/transport", color: "bg-indigo-100 text-indigo-600", iconName: "Bus" },
     { id: '6', label: "Contacts", path: "/contacts", color: "bg-teal-100 text-teal-600", iconName: "Phone" },
@@ -55,7 +55,7 @@ const INITIAL_QUICK_LINKS = [
     { id: '8', label: "Discover", path: "/discover", color: "bg-amber-100 text-amber-600", iconName: "Trophy" },
 ];
 
-const QUICK_LINKS_VERSION = '2.0'; // Increment this to force cache refresh
+const QUICK_LINKS_VERSION = '2.1'; // Increment this to force cache refresh
 
 export function DataProvider({ children }: { children: React.ReactNode }) {
     // Initialize state from localStorage or mockData

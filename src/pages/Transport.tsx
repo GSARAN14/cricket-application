@@ -3,16 +3,19 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Bus, MapPin, Info, Phone } from "lucide-react";
 
+// Update the data structure to include images
 const transportArrangements = [
   {
-    title: "From Erode",
-    description: "Necessary transportation arrangements are made from Erode Railway Station and Erode Bus Stand on a payable basis, as per requirement.",
+    title: "From Erode And Tiruchengode",
+    description: "Necessary transportation arrangements are made available from Erode Railway Station, Erode Bus Stand and Tiruchengode Bus Stand.",
     icon: <Bus className="h-5 w-5 text-primary" />,
+    image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=800&auto=format&fit=crop", // Placeholder for Erode Bus Stand/Railway Station
   },
   {
     title: "From Salem (Optional)",
     description: "If required, optional transportation arrangements may also be organized from Salem Railway Station and Salem Bus Stand on a payable basis, subject to availability.",
     icon: <Bus className="h-5 w-5 text-primary" />,
+    image: "https://images.unsplash.com/photo-1570125909232-eb2bee7c5751?q=80&w=800&auto=format&fit=crop", // Placeholder for Salem Bus Stand/Railway Station
   },
   {
     title: "On-Campus Movements",
@@ -47,16 +50,26 @@ const Transport = () => {
           <h2 className="text-lg font-bold text-foreground font-serif">Transportation Arrangements</h2>
           <div className="grid gap-4 md:grid-cols-1">
             {transportArrangements.map((item, index) => (
-              <Card key={index} className="glass-card p-4 hover:border-primary/40 transition-colors">
-                <div className="flex items-start gap-4">
+              <Card key={index} className="glass-card p-4 hover:border-primary/40 transition-colors overflow-hidden">
+                <div className="flex items-start gap-4 z-10 relative">
                   <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                     {item.icon}
                   </div>
-                  <div>
+                  <div className="flex-1">
                     <h3 className="font-bold text-foreground mb-1">{item.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
+                    <p className="text-sm text-muted-foreground leading-relaxed mb-3">
                       {item.description}
                     </p>
+                    {item.image && (
+                      <div className="relative h-48 w-full rounded-xl overflow-hidden mt-3 shadow-md hover:shadow-lg transition-shadow">
+                        <img
+                          src={item.image}
+                          alt={`${item.title} location`}
+                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
+                      </div>
+                    )}
                   </div>
                 </div>
               </Card>
@@ -103,8 +116,8 @@ const Transport = () => {
             ))}
           </div>
         </div>
-      </div>
-    </AppLayout>
+      </div >
+    </AppLayout >
   );
 };
 
