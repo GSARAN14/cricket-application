@@ -1,7 +1,7 @@
 import AppLayout from "@/components/layout/AppLayout";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Utensils, Clock, MapPin, Phone, Leaf } from "lucide-react";
+import { Utensils, Clock, MapPin, Phone, Leaf, AlertCircle, Navigation } from "lucide-react";
 
 const mealTimings = [
   { meal: "Breakfast", time: "7:00 AM - 9:00 AM", venue: "Hostel Dining Hall" },
@@ -11,29 +11,38 @@ const mealTimings = [
 ];
 
 const nearbyRestaurants = [
-  {
-    id: "1",
-    name: "Saravana Bhavan",
-    type: "Veg",
-    cuisine: "South Indian",
-    distance: "1.2 km",
-    phone: "+91 98765 11111",
-  },
+
   {
     id: "2",
-    name: "Hotel Vasantha Bhavan",
+    name: "Kongu Restaurant",
     type: "Veg",
-    cuisine: "Multi-cuisine",
-    distance: "800m",
-    phone: "+91 98765 22222",
+    cuisine: "Campus Area",
+    distance: "42m away",
+    mapLink: "https://maps.app.goo.gl/5vyYR6YPCvatgiLB9",
+  },
+  {
+    id: "4",
+    name: "MK Little Bites",
+    type: "Snacks",
+    cuisine: "Tiruchengode",
+    distance: "Check Map",
+    mapLink: "https://maps.app.goo.gl/RKb22hGTPZW5nTUv9",
+  },
+  {
+    id: "5",
+    name: "Friends Fast Food",
+    type: "Fast Food",
+    cuisine: "Tiruchengode",
+    distance: "Check Map",
+    mapLink: "https://maps.app.goo.gl/3CWQWVa9vogZ62eeA",
   },
   {
     id: "3",
-    name: "Anjappar Restaurant",
-    type: "Non-Veg",
-    cuisine: "Chettinad",
-    distance: "1.5 km",
-    phone: "+91 98765 33333",
+    name: "Day 2 Day",
+    type: "Veg",
+    cuisine: "Near Venue",
+    distance: "Nearby",
+    mapLink: "https://maps.app.goo.gl/K3wd9iHTG3W1BWj89",
   },
 ];
 
@@ -53,20 +62,22 @@ const Food = () => {
           </TabsList>
 
           <TabsContent value="official" className="space-y-3">
-            <Card className="p-4 bg-secondary/10 border-secondary/20 backdrop-blur-sm">
-              <p className="text-sm text-foreground">
-                <span className="font-bold text-secondary">Note:</span> All official meals are arranged at the venue. 
-                Players and officials are requested to follow the meal timings.
-              </p>
+            <Card className="p-4 bg-orange-500/10 border-orange-500/20 backdrop-blur-sm">
+              <h3 className="font-bold text-orange-700 mb-2 flex items-center gap-2">
+                <AlertCircle className="h-4 w-4" /> Important Information
+              </h3>
+              <ul className="text-sm text-foreground/80 space-y-2 list-disc pl-4">
+                <li>Meals must be pre-booked at least 6 hours in advance.</li>
+                <li>Food tokens are issued 6 hours prior to the scheduled time.</li>
+                <li>The cost of each food item is displayed.</li>
+                <li>Food charges are applied according to the listed cost.</li>
+              </ul>
             </Card>
 
             {mealTimings.map((meal) => (
               <Card key={meal.meal} className="glass-card p-4 hover:border-primary/40 transition-colors">
                 <div className="flex items-center justify-between mb-2">
                   <h3 className="font-bold text-foreground font-serif">{meal.meal}</h3>
-                  <span className="text-xs bg-green-500/10 text-green-700 border border-green-500/20 px-2 py-0.5 rounded-full font-medium">
-                    Included
-                  </span>
                 </div>
                 <div className="space-y-1 text-sm text-muted-foreground">
                   <div className="flex items-center gap-2">
@@ -90,11 +101,10 @@ const Food = () => {
                     <h3 className="font-bold text-foreground font-serif">{restaurant.name}</h3>
                     <p className="text-sm text-muted-foreground">{restaurant.cuisine}</p>
                   </div>
-                  <span className={`text-xs px-2 py-0.5 rounded-full border font-medium flex items-center gap-1 ${
-                    restaurant.type === "Veg" 
-                      ? "bg-green-500/10 text-green-700 border-green-500/20" 
-                      : "bg-red-500/10 text-red-700 border-red-500/20"
-                  }`}>
+                  <span className={`text-xs px-2 py-0.5 rounded-full border font-medium flex items-center gap-1 ${restaurant.type === "Veg"
+                    ? "bg-green-500/10 text-green-700 border-green-500/20"
+                    : "bg-red-500/10 text-red-700 border-red-500/20"
+                    }`}>
                     <Leaf className="h-3 w-3" />
                     {restaurant.type}
                   </span>
@@ -104,12 +114,14 @@ const Food = () => {
                     <MapPin className="h-4 w-4 text-secondary" />
                     <span>{restaurant.distance}</span>
                   </div>
-                  <a 
-                    href={`tel:${restaurant.phone}`}
+                  <a
+                    href={(restaurant as any).mapLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex items-center gap-1 text-primary hover:text-primary/80 transition-colors font-medium bg-primary/5 px-3 py-1.5 rounded-md"
                   >
-                    <Phone className="h-4 w-4" />
-                    <span>Call</span>
+                    <Navigation className="h-4 w-4" />
+                    <span>Open Map</span>
                   </a>
                 </div>
               </Card>
