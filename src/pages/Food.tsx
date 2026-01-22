@@ -11,14 +11,7 @@ const mealTimings = [
 ];
 
 const nearbyRestaurants = [
-  {
-    id: "1",
-    name: "K2K Restaurant",
-    type: "Multi",
-    cuisine: "SH-79, Tiruchengode",
-    distance: "37m from KSRCT",
-    mapLink: "https://maps.app.goo.gl/J3rTDdqtY3y6QUwC8",
-  },
+
   {
     id: "2",
     name: "Kongu Restaurant",
@@ -26,6 +19,22 @@ const nearbyRestaurants = [
     cuisine: "Campus Area",
     distance: "42m away",
     mapLink: "https://maps.app.goo.gl/5vyYR6YPCvatgiLB9",
+  },
+  {
+    id: "4",
+    name: "MK Little Bites",
+    type: "Snacks",
+    cuisine: "Tiruchengode",
+    distance: "Check Map",
+    mapLink: "https://maps.app.goo.gl/RKb22hGTPZW5nTUv9",
+  },
+  {
+    id: "5",
+    name: "Friends Fast Food",
+    type: "Fast Food",
+    cuisine: "Tiruchengode",
+    distance: "Check Map",
+    mapLink: "https://maps.app.goo.gl/3CWQWVa9vogZ62eeA",
   },
   {
     id: "3",
